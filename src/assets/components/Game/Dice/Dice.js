@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import styles from './Dice.module.scss'
 
 function Dice( {num, value, turn, diceNum, setDiceNum, setScore, score, dice, setDice, setMinPick, minPick}) {
