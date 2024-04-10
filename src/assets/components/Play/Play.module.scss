@@ -1,0 +1,20 @@
+.playCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+
+    button {
+        min-width: 185px;
+        padding: 10px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .playCont {
+        flex: 1 1 auto;
+    }
+}

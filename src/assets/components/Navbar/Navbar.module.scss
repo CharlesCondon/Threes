@@ -1,0 +1,31 @@
+$primary-color: rgb(255, 237, 222);
+$background-color: rgb(17, 17, 17);
+
+.navCont {
+    display: inline-flex;
+    flex-direction: column;
+    border-right: 1px solid black;
+    height: 100vh;
+    padding: 0 20px;
+    gap: 20px;
+    h1 {
+        margin: 20px 0;
+    }
+    button {
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .navCont {
+        flex-direction: row;
+        height: auto;
+        justify-content: space-between;
+        border-right: none;
+        button {
+            height: auto;
+            width: 83px;
+        }
+    }
+}

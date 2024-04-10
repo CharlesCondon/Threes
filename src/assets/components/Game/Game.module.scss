@@ -1,0 +1,58 @@
+
+
+
+.gameCont {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: auto;
+    h1 {
+        margin: 20px 0;
+    }
+}
+
+.playerBoard {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 386px;
+    justify-content: space-between;
+}
+
+.playBtns {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+
+    button {
+        width: 100%;
+        min-width: 147px;
+        font-size: 32px;
+        padding: 20px;
+    }
+}
+
+.statsCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .gameCont {
+        padding: 40px;
+
+        h1 {
+            font-size: 28px;
+        }
+    }
+    .playBtns {
+
+        button {
+            font-size: 28px;
+            padding: 10px;
+        }
+    }
+}

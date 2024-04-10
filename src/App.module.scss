@@ -1,0 +1,17 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.App {
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 600px) {
+    .App {
+        flex-direction: column;
+        min-height: 100vh;
+    }
+}
