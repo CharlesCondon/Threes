@@ -89,14 +89,14 @@ function Game() {
                 : <div className={styles.scoreList}>
                     <h3>Scores</h3>
                     <ul>
-                        {storedScores.map((s,i) => {
+                        {storedScores ? storedScores.map((s,i) => {
                             console.log(s)
                             if (i%2 === 0) {
                                 return <li>Score: {s}</li>
                             } else {
                                 return <><p>Turns: {s}</p><br></br></>
                             }
-                        })}
+                        }) : <></>}
                     </ul>
                 </div>}
             <div className={styles.gameCont}>
