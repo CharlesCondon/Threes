@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import styles from './Game.module.scss'
 import Dice from './Dice/Dice';
 
@@ -17,6 +17,11 @@ function Game() {
     const [turn, setTurn] = useState(0);
     const [minPick, setMinPick] = useState(0);
     const [hideScore, setHideScore] = useState(true);
+    const [storedScores, setStoredScores] = useState(() => {
+        const s = localStorage.getItem("scores")
+        const initialScores = JSON.parse(s)
+        return initialScores || "";
+    });
     const intervalRef = useRef(null);
 
     function handleRoll() {
@@ -62,26 +67,38 @@ function Game() {
     }
 
     function handleSubmit() {
-
+        if (!localStorage.getItem("scores")) {
+            console.log('nothing')
+        }
+        localStorage.setItem("scores", JSON.stringify([...storedScores,score,turn]))
     }
 
     function toggleScores() {
         setHideScore(!hideScore)
     }
 
+    // useEffect(() => {
+        
+    //     console.log(initialScores)
+    // },[])
+
     return (
         <div className={styles.board}>
-            {/* <button className={styles.scoreBtn} onClick={() => toggleScores()}>Toggle Scores</button>
+            <button className={styles.scoreBtn} onClick={() => toggleScores()}>Toggle Scores</button>
             {hideScore ?  <></>
                 : <div className={styles.scoreList}>
                     <h3>Scores</h3>
                     <ul>
-                        <li>score</li>
-                        <li>score</li>
-                        <li>score</li>
-                        <li>score</li>
+                        {storedScores.map((s,i) => {
+                            console.log(s)
+                            if (i%2 === 0) {
+                                return <li>Score: {s}</li>
+                            } else {
+                                return <><p>Turns: {s}</p><br></br></>
+                            }
+                        })}
                     </ul>
-                </div>} */}
+                </div>}
             <div className={styles.gameCont}>
                 {/* <h1>Play</h1> */}
                 <div className={styles.scorecard}>
