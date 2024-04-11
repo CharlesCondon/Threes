@@ -1,7 +1,12 @@
 
-
+.board {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
 
 .gameCont {
+    position: relative;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -34,10 +39,40 @@
     }
 }
 
+.finishBtns {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
 .statsCont {
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+.scoreBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.scoreList {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: gray;
+    z-index: 0;
+    min-width: 88px;
+    height: 100%;
+    padding: 0 10px;
+    h3 {
+        margin: 35px 0 10px 0;
+    }
+    ul {
+        list-style-type: none;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -54,5 +89,9 @@
             font-size: 28px;
             padding: 10px;
         }
+    }
+    // temp hide on mobile
+    .scoreBtn {
+        display: none;
     }
 }
