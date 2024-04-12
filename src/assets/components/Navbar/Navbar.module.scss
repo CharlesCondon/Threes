@@ -8,6 +8,15 @@ $background-color: rgb(17, 17, 17);
     height: 100vh;
     padding: 0 20px;
     gap: 20px;
+    min-width: 200px;
+    justify-content: space-between;
+}
+
+.navBtns {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 20px;
+
     h1 {
         margin: 20px 0;
     }
@@ -17,15 +26,32 @@ $background-color: rgb(17, 17, 17);
     }
 }
 
+.navFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
 @media only screen and (max-width: 600px) {
     .navCont {
-        flex-direction: row;
+        flex-direction: column;
         height: auto;
         justify-content: space-between;
         border-right: none;
+    }
+    .navBtns {
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    
+        h1 {
+            margin: 20px 0;
+        }
         button {
             height: auto;
-            width: 83px;
+            width: auto;
         }
     }
 }

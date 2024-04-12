@@ -4,6 +4,7 @@ import Home from './assets/components/Home/Home';
 import Game from './assets/components/Game/Game';
 import Play from './assets/components/Play/Play';
 import Navbar from './assets/components/Navbar/Navbar';
+import Vs from './assets/components/Vs/Vs';
 
 function App() {
 	return (
@@ -18,6 +19,9 @@ function App() {
 				} />
 				<Route path='/play/solo' element={
 					<Game/>
+				} />
+				<Route path='/play/vs' element={
+					<Vs/>
 				} />
 			</Routes>
 		</div>

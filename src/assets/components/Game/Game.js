@@ -17,9 +17,10 @@ function Game() {
     const [turn, setTurn] = useState(0);
     const [minPick, setMinPick] = useState(0);
     const [hideScore, setHideScore] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
     const [storedScores, setStoredScores] = useState(() => {
         const s = localStorage.getItem("scores")
-        const initialScores = JSON.parse(s)
+        const initialScores = JSON.parse(s) 
         return initialScores || "";
     });
     const intervalRef = useRef(null);
@@ -64,13 +65,24 @@ function Game() {
         setDice(initialDice);
         setTurn(0);
         setDiceNum(6);
+        setSubmitted(false);
     }
-
+    
     function handleSubmit() {
+        if (submitted) {
+            return;
+        }
         if (!localStorage.getItem("scores")) {
             console.log('nothing')
         }
         localStorage.setItem("scores", JSON.stringify([...storedScores,score,turn]))
+        setStoredScores(() => {
+            const s = localStorage.getItem("scores")
+            const initialScores = JSON.parse(s)
+            return initialScores || "";
+        })
+        console.log(storedScores)
+        setSubmitted(true);
     }
 
     function toggleScores() {
@@ -87,14 +99,14 @@ function Game() {
             <button className={styles.scoreBtn} onClick={() => toggleScores()}>Toggle Scores</button>
             {hideScore ?  <></>
                 : <div className={styles.scoreList}>
-                    <h3>Scores</h3>
+                    <h3>Hi-Scores</h3>
                     <ul>
                         {storedScores ? storedScores.map((s,i) => {
-                            console.log(s)
+                            
                             if (i%2 === 0) {
-                                return <li>Score: {s}</li>
+                                return <><br></br><li>Score: {s}</li></>
                             } else {
-                                return <><p>Turns: {s}</p><br></br></>
+                                return <><p>Turns: {s}</p><br></br><hr></hr></>
                             }
                         }) : <></>}
                     </ul>
