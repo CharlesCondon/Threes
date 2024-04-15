@@ -17,7 +17,7 @@ function Navbar() {
             </div>
             <div className={styles.navFooter}>
                 <button onClick={() => navigate('/')}>Settings</button>
-                <p>v.0.1</p>
+                <p>v.0.2</p>
             </div>
         </div>
     )
