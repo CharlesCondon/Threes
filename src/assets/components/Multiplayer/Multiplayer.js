@@ -160,40 +160,38 @@ function Multiplayer() {
         let winner;
         if (p1.score === p2.score) {
             winner = "It's a TIE!";
-            return <h2>{winner}</h2>
+            return <h1>{winner}</h1>
         } else if (p1.score > p2.score) {
             winner = p2.player;
-            return <h2>Winner: {winner}</h2>
+            return <h1>Winner: {winner}</h1>
         } else {
             winner = p1.player;
-            return <h2>Winner: {winner}</h2>
+            return <h1>Winner: {winner}</h1>
         }
-
-        
     }
 
     return (
-        <div>
-            <h1>Game: {gameCode}</h1>
-            <h2>It's {isMyTurn ? "your" : "their"} turn</h2>
-            {gameDone ? getWinner() : <></>}
-            <br></br>
+        <div className={styles.gameCont}>
+            {/* <h1>Game: {gameCode}</h1> */}
             
-            <h1>Opp: {opp}</h1>
-            <h2>Score: {p1.player === opp ? p1.score : p2.score}</h2>
-            <div className={styles.playerBoard}>
-                {showDice(opp)}
-            </div>
-            <br></br>
-            
-            <h1>You: {playerId}</h1>
-            <h2>Score: {score}</h2>
-            <div className={styles.playerBoard}>
-                {showDice(playerId)}
-            </div>
-            <br></br>
-
+            {gameDone ? getWinner() : <h1>It's {isMyTurn ? "your" : "their"} turn</h1>}
             <div>
+                <h1>Opp: {opp}</h1>
+                <h2>Score: {p1.player === opp ? p1.score : p2.score}</h2>
+                <div className={styles.playerBoard}>
+                    {showDice(opp)}
+                </div>
+            </div>
+            
+            <div>
+                <h1>You: {playerId}</h1>
+                <h2>Score: {p1.player === opp ? p1.score : p2.score}</h2>
+                <div className={styles.playerBoard}>
+                    {showDice(playerId)}
+                </div>
+            </div>
+            
+            <div className={styles.playBtns}>
                 <button onClick={rollDice} disabled={!isMyTurn || didRoll || gameDone}>Roll Dice</button>
                 <button onClick={submitDice} disabled={!isMyTurn || gameDone || !didRoll}>Submit</button>
             </div>
