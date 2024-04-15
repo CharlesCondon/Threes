@@ -1,0 +1,52 @@
+.playerBoard {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 386px;
+    justify-content: space-between;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 2px solid gray;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+    p {
+        padding:0;
+        margin:0;
+        font-size: 42px;
+    }
+}
+// .dice:hover {
+//     border: 2px solid red;
+// }
+
+.diceLocked {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 2px solid red;
+    box-sizing: border-box;
+    font-size: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .dice {
+        width: 90px;
+        height: 90px;
+    }
+    .diceLocked {
+        width: 90px;
+        height: 90px;
+    }
+}

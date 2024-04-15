@@ -89,11 +89,6 @@ function Game() {
         setHideScore(!hideScore)
     }
 
-    // useEffect(() => {
-        
-    //     console.log(initialScores)
-    // },[])
-
     return (
         <div className={styles.board}>
             <button className={styles.scoreBtn} onClick={() => toggleScores()}>Toggle Scores</button>

@@ -5,6 +5,7 @@ import Game from './assets/components/Game/Game';
 import Play from './assets/components/Play/Play';
 import Navbar from './assets/components/Navbar/Navbar';
 import Vs from './assets/components/Vs/Vs';
+import Multiplayer from './assets/components/Multiplayer/Multiplayer';
 
 function App() {
 	return (
@@ -22,6 +23,9 @@ function App() {
 				} />
 				<Route path='/play/vs' element={
 					<Vs/>
+				} />
+				<Route path='/play/vs/:gameCode' element={
+					<Multiplayer/>
 				} />
 			</Routes>
 		</div>
