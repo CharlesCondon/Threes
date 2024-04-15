@@ -36,6 +36,7 @@ function Multiplayer() {
     const [minPick, setMinPick] = useState(0);
     const [diceNum, setDiceNum] = useState(6);
     const [didRoll, setDidRoll] = useState(false);
+    const [gameDone, setGameDone] = useState(false);
 
     useEffect(() => {
         if (socket) {
@@ -51,6 +52,7 @@ function Multiplayer() {
                 // setDice(state.dice);
                 setTurn(state.turnNum);
                 setIsMyTurn(state.turn === playerId);
+                setGameDone(state.done)
             });
     
             // socket.on('connect', () => {
@@ -73,15 +75,12 @@ function Multiplayer() {
     };
 
     function showDice(player) {
-        // console.log(player)
-        // console.log(p1[0].player)
-        //console.log(p1)
         if (player === p1.player) {
             return p1.dice.map((d, i) => <div className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
-                    <p>{d.value === 0 ? '?' : d.value}</p></div>)
+                    <p key={i}>{d.value === 0 ? '?' : d.value}</p></div>)
         } else {
             return p2.dice.map((d, i) => <div className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
-                    <p>{d.value === 0 ? '?' : d.value}</p></div>)
+                    <p key={i}>{d.value === 0 ? '?' : d.value}</p></div>)
         }
     }
 
@@ -119,7 +118,7 @@ function Multiplayer() {
                     return d;
                 }
             })
-            console.log(newDice)
+            //console.log(newDice)
             setDice(newDice);
         } else {
             if (you.dice[idx].turnLock !== turn && you.dice[idx].turnLock !== 0) {
@@ -146,14 +145,38 @@ function Multiplayer() {
     }
 
     const submitDice = () => {
+        //console.log(p1)
+        if (minPick === 0 && turn !== 0) {
+            alert("You must pick at least one die per turn.");
+            return;
+        }
+
         setDidRoll(false);
-        socket.emit('submitDice', gameCode, dice, playerId, score);
+        socket.emit('submitDice', gameCode, dice, playerId, score, diceNum);
+        setMinPick(0);
+    }
+
+    function getWinner() {
+        let winner;
+        if (p1.score === p2.score) {
+            winner = "It's a TIE!";
+            return <h2>{winner}</h2>
+        } else if (p1.score > p2.score) {
+            winner = p2.player;
+            return <h2>Winner: {winner}</h2>
+        } else {
+            winner = p1.player;
+            return <h2>Winner: {winner}</h2>
+        }
+
+        
     }
 
     return (
         <div>
             <h1>Game: {gameCode}</h1>
             <h2>It's {isMyTurn ? "your" : "their"} turn</h2>
+            {gameDone ? getWinner() : <></>}
             <br></br>
             
             <h1>Opp: {opp}</h1>
@@ -171,8 +194,8 @@ function Multiplayer() {
             <br></br>
 
             <div>
-                <button onClick={rollDice} disabled={!isMyTurn || didRoll}>Roll Dice</button>
-                <button onClick={submitDice} disabled={!isMyTurn}>Submit</button>
+                <button onClick={rollDice} disabled={!isMyTurn || didRoll || gameDone}>Roll Dice</button>
+                <button onClick={submitDice} disabled={!isMyTurn || gameDone || !didRoll}>Submit</button>
             </div>
         </div>
     );

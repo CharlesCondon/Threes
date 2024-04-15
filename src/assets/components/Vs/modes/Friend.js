@@ -42,7 +42,7 @@ function Friend({ setMode }) {
 
         // Listen for gameStart from server
         socket.on('gameStart', (games) => {
-            console.log(games)
+            //console.log(games)
             setGameStatus(`Players ready`);
             setReady(true);
         });

@@ -47,8 +47,9 @@ io.on('connection', (socket) => {
             turn: userId,
             turnNum: 0,
             dice: [],
-            p1: {player: userId, dice: cloneDice(initialDice), turnNum: 0, diceLeft: 6, score: 0},
-            p2: {player: "", dice: cloneDice(initialDice), turnNum: 0, diceLeft: 6, score: 0}
+            done: false,
+            p1: {player: userId, dice: cloneDice(initialDice), turnNum: 0, diceLeft: 6, score: 0, done:false},
+            p2: {player: "", dice: cloneDice(initialDice), turnNum: 0, diceLeft: 6, score: 0, done:false}
         }; // Create a new game with one player
         // games[gameCode].p1.map((v) => v.player = userId)
         console.log("creating game")
@@ -63,7 +64,7 @@ io.on('connection', (socket) => {
             socket.join(gameCode);
             socket.emit('gameJoined', {});
             console.log("player joined game")
-            console.log(games[gameCode])
+            //console.log(games[gameCode])
             io.to(gameCode).emit('gameStart', games[gameCode]); // Notify all players to start the game
         } else {
             socket.emit('error', 'Game is full or does not exist');
@@ -86,7 +87,7 @@ io.on('connection', (socket) => {
                 games[gameCode].players.push(userId);
             }
             console.log('existing game')
-            console.log(games[gameCode])
+            //console.log(games[gameCode])
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     });
@@ -115,27 +116,44 @@ io.on('connection', (socket) => {
             }
             
             //games[gameCode].turn = games[gameCode].players.find(id => id !== userId);
-            console.log(games[gameCode])
+            //console.log(games[gameCode])
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     });
 
-    socket.on('submitDice', (gameCode, dice, playerId, score) => {
-        // console.log(playerId)
-        // console.log(dice)
-        // console.log(gameCode)
+    socket.on('submitDice', (gameCode, dice, playerId, score, diceNum) => {
+        //console.log(diceNum)
         console.log("submitting dice")
         if (games[gameCode].turn === playerId) {
+            const opp = games[gameCode].players.find(id => id !== userId);
+            // update if player 1
             if (games[gameCode].p1.player === playerId) {
                 games[gameCode].p1.dice = dice;
                 games[gameCode].p1.score = score;
-                console.log(games[gameCode].p1.dice)
+                games[gameCode].p1.diceLeft = diceNum;
+                if (diceNum === 0) {
+                    games[gameCode].p1.done = true;
+                }
+                if (!games[gameCode].p2.done) {
+                    games[gameCode].turn = opp;
+                }
+                //console.log(games[gameCode].p1)
+            // update if player 2
             } else {
                 games[gameCode].p2.dice = dice;
                 games[gameCode].p2.score = score;
-                console.log(games[gameCode].p2.dice)
+                games[gameCode].p2.diceLeft = diceNum;
+                if (diceNum === 0) {
+                    games[gameCode].p2.done = true;
+                }
+                if (!games[gameCode].p1.done) {
+                    games[gameCode].turn = opp;
+                }
+                //console.log(games[gameCode].p2)
             }
-            games[gameCode].turn = games[gameCode].players.find(id => id !== userId);
+            if (games[gameCode].p2.done && games[gameCode].p1.done) {
+                games[gameCode].done = true;
+            }
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
         
