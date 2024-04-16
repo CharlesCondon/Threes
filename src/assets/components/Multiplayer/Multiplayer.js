@@ -277,7 +277,7 @@ function Multiplayer() {
             
             <div>
                 <h1>You: {playerId}</h1>
-                <h2>Score: {p1.player === opp ? p1.score : p2.score}</h2>
+                <h2>Score: {p1.player === playerId ? p1.score : p2.score}</h2>
                 <div className={styles.playerBoard}>
                     {showDice(playerId)}
                 </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const ENDPOINT = "https://threes-server.adaptable.app/";
+ const ENDPOINT = "https://threes-server.adaptable.app/";
+//const ENDPOINT = "http://localhost:8080";
 
 const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
