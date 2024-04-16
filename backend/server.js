@@ -4,12 +4,22 @@ const socketIo = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-app.use(cors()); // Enable CORS
+const corsOptions = {
+    origin: "https://threes-psi.vercel.app/", // Adjust according to your security requirements
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true
+}
+
+app.use(cors(corsOptions)); // Enable CORS
+
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "*", // Adjust according to your security requirements
-    methods: ["GET", "POST"]
+    origin: "https://threes-psi.vercel.app/", // Adjust according to your security requirements
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true
   }
 });
 
