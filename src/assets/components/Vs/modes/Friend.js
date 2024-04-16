@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import socketIOClient from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 import SocketContext from '../../../context/SocketContext';
 import styles from '../Vs.module.scss'

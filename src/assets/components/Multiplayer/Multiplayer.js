@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import socketIOClient from 'socket.io-client';
+//import socketIOClient from 'socket.io-client';
 import SocketContext from '../../context/SocketContext';
 import styles from './Multiplayer.module.scss'
 
