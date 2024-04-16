@@ -131,76 +131,108 @@ function Multiplayer() {
 
     function showDice(player) {
         if (player === p1.player) {
-            return p1.dice.map((d, i) => <div className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
-                    <p key={i}>{d.value === 0 ? '?' : d.value}</p></div>)
+            return p1.dice.map((d, i) => <div key={i} className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
+                    <p >{d.value === 0 ? '?' : d.value}</p></div>)
         } else {
-            return p2.dice.map((d, i) => <div className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
-                    <p key={i}>{d.value === 0 ? '?' : d.value}</p></div>)
+            return p2.dice.map((d, i) => <div key={i} className={d.locked === false ? styles.dice : styles.diceLocked} onClick={() => handleLock(i)}>
+                    <p >{d.value === 0 ? '?' : d.value}</p></div>)
         }
     }
 
     function handleLock(idx) {
-        let you;
+        //let you;
 
-        if (!didRoll) {
+        if (!didRoll || turn === 0) {
             return;
         }
 
-        if (p1.player === playerId) {
-            you = p1;
-        } else {
-            you = p2;
-        }
-        
-        if (turn === 0) {
-            return;
-        }
-        
-        if (you.dice[idx].locked === false) {
-            if (you.dice[idx].value === 3) {
-                setScore(score + 0);
-            } else {
-                setScore(score + you.dice[idx].value);
-            }
-            setDiceNum(diceNum-1);
-            console.log(`Current Dice Left: ${diceNum}`)
-            console.log(`Current Score: ${score}`)
-            setMinPick(minPick+1);
-            const newDice = you.dice.map((d,i) => {
-                if (i !== idx) {
-                    return d;
-                } else {
-                    d.locked = true;
-                    d.turnLock = turn;
-                    return d;
-                }
-            })
-            //console.log(newDice)
-            setDice(newDice);
-        } else {
-            if (you.dice[idx].turnLock !== turn && you.dice[idx].turnLock !== 0) {
+        let currentPlayer = p1.player === playerId ? p1 : p2;
+
+        // if (p1.player === playerId) {
+        //     you = p1;
+        // } else {
+        //     you = p2;
+        // }
+
+        if (currentPlayer.dice[idx].locked) {
+            if (currentPlayer.dice[idx].turnLock !== turn && currentPlayer.dice[idx].turnLock !== 0) {
                 return;
             }
-            if (you.dice[idx].value === 3) {
-                setScore(score - 0);
-            } else {
-                setScore(score - you.dice[idx].value);
-            }
-            setDiceNum(diceNum+1);
-            console.log(`Current Dice Left: ${diceNum}`)
-            console.log(`Current Score: ${score}`)
-            setMinPick(minPick-1);
-            const newDice = dice.map((d,i) => {
-                if (i !== idx) {
-                    return d;
-                } else {
-                    d.locked = false;
-                    d.turnLock = 0;
-                    return d;
-                }
-            })
-            setDice(newDice);
+    
+            const scoreAdjustment = currentPlayer.dice[idx].value === 3 ? 0 : currentPlayer.dice[idx].value;
+            setScore(prevScore => prevScore - scoreAdjustment);
+            setDiceNum(prevDiceNum => prevDiceNum + 1);
+            setMinPick(prevMinPick => prevMinPick - 1);
+        } else {
+            const scoreAdjustment = currentPlayer.dice[idx].value === 3 ? 0 : currentPlayer.dice[idx].value;
+            setScore(prevScore => prevScore + scoreAdjustment);
+            setDiceNum(prevDiceNum => prevDiceNum - 1);
+            setMinPick(prevMinPick => prevMinPick + 1);
         }
+
+        const updatedDice = currentPlayer.dice.map((d, i) => {
+            if (i === idx) {
+                return {
+                    ...d,
+                    locked: !d.locked,
+                    turnLock: d.locked ? 0 : turn  // Toggle turn lock based on current state
+                };
+            }
+            return d;
+        });
+
+        if (p1.player === playerId) {
+            setP1(prev => ({ ...prev, dice: updatedDice }));
+        } else {
+            setP2(prev => ({ ...prev, dice: updatedDice }));
+        }
+        
+        
+        // if (you.dice[idx].locked === false) {
+        //     if (you.dice[idx].value === 3) {
+        //         setScore(score + 0);
+        //     } else {
+        //         setScore(score + you.dice[idx].value);
+        //     }
+        //     setDiceNum(diceNum-1);
+        //     console.log(`Current Dice Left: ${diceNum}`)
+        //     console.log(`Current Score: ${score}`)
+        //     setMinPick(minPick+1);
+        //     const newDice = you.dice.map((d,i) => {
+        //         if (i !== idx) {
+        //             return d;
+        //         } else {
+        //             d.locked = true;
+        //             d.turnLock = turn;
+        //             return d;
+        //         }
+        //     })
+        //     //console.log(newDice)
+        //     setDice(newDice);
+        // } else {
+        //     if (you.dice[idx].turnLock !== turn && you.dice[idx].turnLock !== 0) {
+        //         return;
+        //     }
+        //     if (you.dice[idx].value === 3) {
+        //         setScore(score - 0);
+        //     } else {
+        //         setScore(score - you.dice[idx].value);
+        //     }
+        //     setDiceNum(diceNum+1);
+        //     console.log(`Current Dice Left: ${diceNum}`)
+        //     console.log(`Current Score: ${score}`)
+        //     setMinPick(minPick-1);
+        //     const newDice = dice.map((d,i) => {
+        //         if (i !== idx) {
+        //             return d;
+        //         } else {
+        //             d.locked = false;
+        //             d.turnLock = 0;
+        //             return d;
+        //         }
+        //     })
+        //     setDice(newDice);
+        // }
     }
 
     const submitDice = () => {
