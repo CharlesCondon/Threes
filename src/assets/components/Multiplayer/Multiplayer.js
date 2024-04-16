@@ -68,27 +68,55 @@ function Multiplayer() {
     }, [gameCode, playerId, socket]);
 
     useEffect(() => {
-        let s = p1.dice.reduce((total, d) => {
-            if (d.locked) {
-                return total + d
-            } else {
-                return total + 0
-            }
-        }, 0)
+        let s;
+        let num;
+        if (playerId === p1.player) {
+            s = p1.dice.reduce((total, d) => {
+                if (d.locked) {
+                    return total + d.value
+                } else {
+                    return total + 0
+                }
+            }, 0);
+
+            num = p1.dice.reduce((total, d) => {
+                if (d.locked) {
+                    return total - 1
+                } else {
+                    return total - 0
+                }
+            }, 6);
+        } else {
+            s = p2.dice.reduce((total, d) => {
+                if (d.locked) {
+                    return total + d.value
+                } else {
+                    return total + 0
+                }
+            }, 0);
+            num = p2.dice.reduce((total, d) => {
+                if (d.locked) {
+                    return total - 1
+                } else {
+                    return total - 0
+                }
+            }, 6);
+        }
+        
         const gameState = {
-            p1, p2, s, diceNum, minPick, didRoll
+            p1, p2, s, num, minPick, didRoll
         };
         localStorage.setItem('gameState', JSON.stringify(gameState));
-    }, [p1, p2, score, diceNum, minPick, didRoll]);
+    }, [p1, p2, score, diceNum, minPick, didRoll, playerId]);
 
     useEffect(() => {
         const savedGameState = localStorage.getItem('gameState');
         if (savedGameState) {
-            const { p1, p2, s, diceNum, minPick, didRoll } = JSON.parse(savedGameState);
+            const { p1, p2, s, num, minPick, didRoll } = JSON.parse(savedGameState);
             setP1(p1);
             setP2(p2);
             setScore(s);
-            setDiceNum(diceNum);
+            setDiceNum(num);
             setMinPick(minPick);
             setDidRoll(didRoll);
         }
