@@ -68,8 +68,15 @@ function Multiplayer() {
     }, [gameCode, playerId, socket]);
 
     useEffect(() => {
+        let s = p1.dice.reduce((total, d) => {
+            if (d.locked) {
+                return total + d
+            } else {
+                return total + 0
+            }
+        }, 0)
         const gameState = {
-            p1, p2, score, diceNum, minPick, didRoll
+            p1, p2, s, diceNum, minPick, didRoll
         };
         localStorage.setItem('gameState', JSON.stringify(gameState));
     }, [p1, p2, score, diceNum, minPick, didRoll]);
@@ -77,10 +84,10 @@ function Multiplayer() {
     useEffect(() => {
         const savedGameState = localStorage.getItem('gameState');
         if (savedGameState) {
-            const { p1, p2, score, diceNum, minPick, didRoll } = JSON.parse(savedGameState);
+            const { p1, p2, s, diceNum, minPick, didRoll } = JSON.parse(savedGameState);
             setP1(p1);
             setP2(p2);
-            setScore(score);
+            setScore(s);
             setDiceNum(diceNum);
             setMinPick(minPick);
             setDidRoll(didRoll);
