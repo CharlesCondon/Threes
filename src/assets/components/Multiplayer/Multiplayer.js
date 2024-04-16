@@ -106,6 +106,7 @@ function Multiplayer() {
         const gameState = {
             p1, p2, s, num, minPick, didRoll
         };
+        console.log(gameState);
         localStorage.setItem('gameState', JSON.stringify(gameState));
     }, [p1, p2, score, diceNum, minPick, didRoll, playerId]);
 
@@ -243,7 +244,7 @@ function Multiplayer() {
         }
 
         setDidRoll(false);
-        socket.emit('submitDice', gameCode, dice, playerId, score, diceNum);
+        socket.emit('submitDice', gameCode, playerId === p1.player ? p1.dice : p2.dice, playerId, score, diceNum);
         setMinPick(0);
     }
 
