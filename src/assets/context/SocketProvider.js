@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const ENDPOINT = "threes-production.up.railway.app:8080";
+const ENDPOINT = "threes-production.up.railway.app";
 
 const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
