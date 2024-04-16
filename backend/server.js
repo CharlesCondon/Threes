@@ -171,7 +171,7 @@ io.on('connection', (socket) => {
 
 });
 
-const port = 443;
+const port = process.env.PORT || 3000;
 server.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
