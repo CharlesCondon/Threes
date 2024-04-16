@@ -108,6 +108,7 @@ function Multiplayer() {
                 setScore(score + you.dice[idx].value);
             }
             setDiceNum(diceNum-1);
+            console.log(diceNum)
             setMinPick(minPick+1);
             const newDice = you.dice.map((d,i) => {
                 if (i !== idx) {
