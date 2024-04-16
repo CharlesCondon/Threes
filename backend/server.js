@@ -147,7 +147,7 @@ io.on('connection', (socket) => {
                 if (!games[gameCode].p2.done) {
                     games[gameCode].turn = opp;
                 }
-                //console.log(games[gameCode].p1)
+                console.log(games[gameCode].p1)
             // update if player 2
             } else {
                 games[gameCode].p2.dice = dice;
@@ -159,8 +159,11 @@ io.on('connection', (socket) => {
                 if (!games[gameCode].p1.done) {
                     games[gameCode].turn = opp;
                 }
-                //console.log(games[gameCode].p2)
+                console.log(games[gameCode].p2)
             }
+            console.log(games[gameCode])
+            //console.log(games[gameCode].p1)
+            
             if (games[gameCode].p2.done && games[gameCode].p1.done) {
                 games[gameCode].done = true;
             }
