@@ -141,6 +141,7 @@ io.on('connection', (socket) => {
                 games[gameCode].p1.dice = dice;
                 games[gameCode].p1.score = score;
                 games[gameCode].p1.diceLeft = diceNum;
+                
                 if (diceNum === 0) {
                     games[gameCode].p1.done = true;
                 }

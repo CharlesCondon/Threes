@@ -73,7 +73,11 @@ function Multiplayer() {
         if (playerId === p1.player) {
             s = p1.dice.reduce((total, d) => {
                 if (d.locked) {
-                    return total + d.value
+                    if (d.value === 3) {
+                        return total + 0
+                    } else {
+                        return total + d.value
+                    }
                 } else {
                     return total + 0
                 }
@@ -89,7 +93,11 @@ function Multiplayer() {
         } else {
             s = p2.dice.reduce((total, d) => {
                 if (d.locked) {
-                    return total + d.value
+                    if (d.value === 3) {
+                        return total + 0
+                    } else {
+                        return total + d.value
+                    }
                 } else {
                     return total + 0
                 }
@@ -242,9 +250,12 @@ function Multiplayer() {
             alert("You must pick at least one die per turn.");
             return;
         }
-
+        const state = JSON.parse(localStorage.getItem('gameState'));
+        const n = state.num;
+        const s = state.s;
+        console.log(state)
         setDidRoll(false);
-        socket.emit('submitDice', gameCode, playerId === p1.player ? p1.dice : p2.dice, playerId, score, diceNum);
+        socket.emit('submitDice', gameCode, playerId === p1.player ? p1.dice : p2.dice, playerId, s, n);
         setMinPick(0);
     }
 
