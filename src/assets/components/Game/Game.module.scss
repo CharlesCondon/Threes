@@ -170,9 +170,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .board {
-        
-    }
     .gameCont {
         padding: 40px;
 
@@ -187,10 +184,6 @@
             padding: 10px;
         }
     }
-    // temp hide on mobile
-    .scoreBtn {
-        
-    }
     .helpModal {
         width: fit-content;
         min-width: 300px;
@@ -200,6 +193,7 @@
         background-color: var(--accent-color);
         text-align: left;
         min-width: 125px;
+        height: fit-content;
         max-height: calc(100% - 65px);
         left: 10px;
         box-shadow: 

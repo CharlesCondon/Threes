@@ -24,7 +24,7 @@ const initialPlayer = {
 
 function Multiplayer() {
     const { gameCode } = useParams();
-    const [dice, setDice] = useState([]);
+    //const [dice, setDice] = useState([]);
     const [turn, setTurn] = useState('');
     const [isMyTurn, setIsMyTurn] = useState(false);
     const [playerId, setPlayerId] = useState(null);
