@@ -2,7 +2,9 @@
 .board {
     position: relative;
     width: 100%;
+    height: 100vh;
     display: flex;
+    flex: 1;
 }
 
 .gameCont {
@@ -13,6 +15,7 @@
     justify-content: center;
     gap: 20px;
     margin: auto;
+    height: 100%;
     h1 {
         margin: 20px 0;
     }
@@ -56,29 +59,120 @@
     top: 10px;
     left: 10px;
     z-index: 10;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 
+        0px 0px 0px 1px rgba(0,0,0,.06),
+        0px 1px 1px -0.5px rgba(0,0,0,.06),
+        0px 3px 3px -1.5px rgba(0,0,0,.06),
+        0px 6px 6px -3px rgba(0,0,0,.06),
+        0px 12px 12px -6px rgba(0,0,0,.06),
+        0px 24px 24px -12px rgba(0,0,0,.06);
+}
+
+.helpBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 
+        0px 0px 0px 1px rgba(0,0,0,.06),
+        0px 1px 1px -0.5px rgba(0,0,0,.06),
+        0px 3px 3px -1.5px rgba(0,0,0,.06),
+        0px 6px 6px -3px rgba(0,0,0,.06),
+        0px 12px 12px -6px rgba(0,0,0,.06),
+        0px 24px 24px -12px rgba(0,0,0,.06);
 }
 
 .scoreList {
     position: absolute;
-    top: 0px;
+    top: 55px;
     left: 0px;
-    background-color: gray;
-    z-index: 0;
-    min-width: 88px;
-    height: 100%;
+    z-index: 9;
+    height: calc(100% - 65px);
     padding: 0 10px 0 10px;
-    text-align: center;
-    // overflow-y: scroll;
+    overflow-y: scroll;
+    text-align: left;
+    min-width: 125px;
+    border-radius: 5px;
+    
     // scrollbar-gutter: stable both-edges;
     h3 {
-        margin: 35px 0 20px 0;
-    }
-    ul {
-        list-style-type: none;
+        margin: 10px 0;
     }
 }
 
-@media only screen and (max-width: 600px) {
+.individualScore {
+    background-color: var(--dark-accent);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 
+        0px 0px 0px 1px rgba(0,0,0,.06),
+        0px 1px 1px -0.5px rgba(0,0,0,.06),
+        0px 3px 3px -1.5px rgba(0,0,0,.06),
+        0px 6px 6px -3px rgba(0,0,0,.06),
+        0px 12px 12px -6px rgba(0,0,0,.06),
+        0px 24px 24px -12px rgba(0,0,0,.06);
+}
+
+.resetScores {
+    background-color: var(--dark-accent);
+    color: white;
+    padding: 3px 5px;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.helpModal {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--accent-color);
+    z-index: 10;
+    padding: 32px;
+    border-radius: 10px;
+    color: var(--dark-accent);
+    box-shadow: 
+        0px 0px 0px 1px rgba(0,0,0,.06),
+        0px 1px 1px -0.5px rgba(0,0,0,.06),
+        0px 3px 3px -1.5px rgba(0,0,0,.06),
+        0px 6px 6px -3px rgba(0,0,0,.06),
+        0px 12px 12px -6px rgba(0,0,0,.06),
+        0px 24px 24px -12px rgba(0,0,0,.06);
+    button {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 32px;
+        background-color: transparent;
+        border: none;
+    }
+    ul {
+        list-style-position: inside;
+        margin: 10px 0;
+        li {
+            margin-bottom: 5px;
+        }
+    }
+    h2 {
+        font-size: 28px;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .board {
+        
+    }
     .gameCont {
         padding: 40px;
 
@@ -95,6 +189,31 @@
     }
     // temp hide on mobile
     .scoreBtn {
-        display: none;
+        
+    }
+    .helpModal {
+        width: fit-content;
+        min-width: 300px;
+        top: 50%;
+    }
+    .scoreList {
+        background-color: var(--accent-color);
+        text-align: left;
+        min-width: 125px;
+        max-height: calc(100% - 65px);
+        left: 10px;
+        box-shadow: 
+            0px 0px 0px 1px rgba(0,0,0,.06),
+            0px 1px 1px -0.5px rgba(0,0,0,.06),
+            0px 3px 3px -1.5px rgba(0,0,0,.06),
+            0px 6px 6px -3px rgba(0,0,0,.06),
+            0px 12px 12px -6px rgba(0,0,0,.06),
+            0px 24px 24px -12px rgba(0,0,0,.06);
+        h3 {
+            color: var(--dark-accent);
+        }
+    }
+    .individualScore{
+        background-color: var(--bg-color);
     }
 }

@@ -17,7 +17,7 @@ function Game() {
     const [turn, setTurn] = useState(0);
     const [minPick, setMinPick] = useState(0);
     const [hideScore, setHideScore] = useState(true);
-    const [submitted, setSubmitted] = useState(false);
+    const [hideHelp, setHideHelp] = useState(true);
     const [storedScores, setStoredScores] = useState(() => {
         const s = localStorage.getItem("scores")
         const initialScores = JSON.parse(s) 
@@ -59,52 +59,68 @@ function Game() {
         setTurn(turn+1);
         setMinPick(0);
     }
-
-    function handleRestart() {
+    
+    function handleSubmit() {
+        if (!localStorage.getItem("scores")) {
+            console.log('nothing')
+            localStorage.setItem("scores", JSON.stringify([{score:score,turn:turn}]))
+        } else {
+            localStorage.setItem("scores", JSON.stringify([...storedScores,{score:score,turn:turn}]))
+        }
+        setStoredScores(() => {
+            const s = localStorage.getItem("scores")
+            const initialScores = JSON.parse(s)
+            const sortedScores = initialScores.sort((a,b) => a.score - b.score);
+            return sortedScores || "";
+        })
         setScore(0);
         setDice(initialDice);
         setTurn(0);
         setDiceNum(6);
-        setSubmitted(false);
-    }
-    
-    function handleSubmit() {
-        if (submitted) {
-            return;
-        }
-        if (!localStorage.getItem("scores")) {
-            console.log('nothing')
-        }
-        localStorage.setItem("scores", JSON.stringify([...storedScores,score,turn]))
-        setStoredScores(() => {
-            const s = localStorage.getItem("scores")
-            const initialScores = JSON.parse(s)
-            return initialScores || "";
-        })
-        console.log(storedScores)
-        setSubmitted(true);
     }
 
     function toggleScores() {
         setHideScore(!hideScore)
     }
+    function toggleHelp() {
+        setHideHelp(!hideHelp)
+    }
+
+    function resetScores() {
+        localStorage.removeItem("scores")
+        setStoredScores()
+    }
 
     return (
         <div className={styles.board}>
-            <button className={styles.scoreBtn} onClick={() => toggleScores()}>Toggle Scores</button>
+            <button className={styles.scoreBtn} onClick={() => toggleScores()}>Scores</button>
             {hideScore ?  <></>
                 : <div className={styles.scoreList}>
                     <h3>Hi-Scores</h3>
                     <ul>
                         {storedScores ? storedScores.map((s,i) => {
-                            
-                            if (i%2 === 0) {
-                                return <><br></br><li>Score: {s}</li></>
-                            } else {
-                                return <><p>Turns: {s}</p><br></br><hr></hr></>
-                            }
+                            return <div key={i} className={styles.individualScore}>
+                                <p>Score: {s.score}</p>
+                                <p>Turn: {s.turn}</p>
+                            </div>
                         }) : <></>}
                     </ul>
+                    <button className={styles.resetScores} onClick={() => resetScores()}>Reset Scores</button>
+                </div>}
+            <button className={styles.helpBtn} onClick={() => toggleHelp()}>?</button>
+            {hideHelp ?  <></>
+                : <div className={styles.helpModal}>
+                    <button onClick={() => toggleHelp()}>X</button>
+                    <h2>How To Play</h2>
+                    <h3>Get the lowest combined dice score.</h3>
+                    <div>
+                        <ul>
+                            <li>After each roll, select at least one die to lock in.</li>
+                            <li>Keep rolling until all dice are locked in.</li>
+                            <li>The lower the score, the better.</li>
+                            <li>Threes equal zero.</li>
+                        </ul>
+                    </div>
                 </div>}
             <div className={styles.gameCont}>
                 {/* <h1>Play</h1> */}
@@ -126,7 +142,6 @@ function Game() {
                 <div className={styles.playBtns}>
                     {diceNum === 0 
                         ? <div className={styles.finishBtns}>
-                            <button onClick={() => handleRestart()}>Restart</button>
                             <button onClick={() => handleSubmit()}>Submit</button>
                         </div> 
                         : <button onClick={() => handleRoll()}>Roll</button>}

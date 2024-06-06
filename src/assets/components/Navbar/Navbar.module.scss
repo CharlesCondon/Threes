@@ -2,6 +2,7 @@ $primary-color: rgb(255, 237, 222);
 $background-color: rgb(17, 17, 17);
 
 .navCont {
+    position: relative;
     display: inline-flex;
     flex-direction: column;
     border-right: 1px solid black;
@@ -10,19 +11,54 @@ $background-color: rgb(17, 17, 17);
     gap: 20px;
     min-width: 200px;
     justify-content: space-between;
+    z-index: 100;
+    background-color: var(--bg-color);
 }
 
 .navBtns {
     display: inline-flex;
     flex-direction: column;
     gap: 20px;
-
+    height: 100%;
     h1 {
         margin: 20px 0;
+        position: relative;
+        z-index: 100;
     }
     button {
         font-size: 20px;
         padding: 10px;
+        box-shadow: 
+            0px 0px 0px 1px rgba(0,0,0,.06),
+            0px 1px 1px -0.5px rgba(0,0,0,.06),
+            0px 3px 3px -1.5px rgba(0,0,0,.06),
+            0px 6px 6px -3px rgba(0,0,0,.06),
+            0px 12px 12px -6px rgba(0,0,0,.06),
+            0px 24px 24px -12px rgba(0,0,0,.06);
+    }
+    .hamburger {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        position: absolute;
+        z-index: 100;
+        right: 1rem;
+    }
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        transition: left 0.3s ease;
+    }
+    .sidebar.open {
+        left: 0;
     }
 }
 
@@ -32,9 +68,19 @@ $background-color: rgb(17, 17, 17);
     align-items: end;
     justify-content: space-between;
     padding-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+
+    button {
+        font-size: 16px;
+        padding: 3px 5px; 
+    }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .navCont {
         flex-direction: column;
         height: auto;
@@ -45,7 +91,7 @@ $background-color: rgb(17, 17, 17);
         display: inline-flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 20px;
+        justify-content: space-between;
     
         h1 {
             margin: 20px 0;
@@ -53,6 +99,42 @@ $background-color: rgb(17, 17, 17);
         button {
             height: auto;
             width: auto;
+        }
+        .hamburger {
+            display: block;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            height: 100vh;
+            background-color: var(--dark-accent);
+            color: var(--accent-color);
+            padding: 1rem;
+            padding-top: 5rem;
+            display: flex;
+            gap: 15px;
+            transition: left 0.2s ease;
+        }
+        .sidebar button {
+            border: none;
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+        }
+    }
+    .navFooter {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+
+        button {
+            width: fit-content !important;
+            font-size: 16px;
+            padding: 5px !important;
+            color: black;
         }
     }
 }

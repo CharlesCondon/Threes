@@ -1,15 +1,31 @@
-
+:root {
+    --bg-color: rgb(104, 109, 118);
+    --accent-color: rgb(238, 238, 238);
+    --dark-accent: rgb(55, 58, 64);
+    --pop-color: rgb(220, 95, 0);
+  }
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+button {
+    cursor: pointer;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+}
+
 .App {
     display: flex;
     flex-direction: row;
+    background-color: var(--bg-color);
+    color: var(--accent-color);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .App {
         flex-direction: column;
         min-height: 100vh;
