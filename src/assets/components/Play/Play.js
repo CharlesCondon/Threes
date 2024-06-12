@@ -9,7 +9,7 @@ function Play() {
         <div className={styles.playCont}>
             <h1>Select Mode</h1>
             <button onClick={() => navigate('./solo')}>Solo</button>
-            <button disabled onClick={() => navigate('./vs')}>VS</button>
+            <button onClick={() => navigate('./vs')}>VS</button>
         </div>
     )
 }
