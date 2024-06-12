@@ -64,6 +64,7 @@ function Multiplayer() {
             //     socket.off('gameState');
             // };
         }
+        else {return}
         
     }, [gameCode, playerId, socket]);
 
