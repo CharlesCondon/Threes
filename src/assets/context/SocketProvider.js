@@ -21,6 +21,10 @@ const SocketProvider = ({ children }) => {
 
     useEffect(() => {
         const newSocket = socketIOClient(ENDPOINT, {
+            withCredentials: true,
+            extraHeaders: {
+                "Access-Control-Allow-Origin": "https://threes-psi.vercel.app"
+            },
             query: {userId: generateUserId()}
         });
         setSocket(newSocket);
