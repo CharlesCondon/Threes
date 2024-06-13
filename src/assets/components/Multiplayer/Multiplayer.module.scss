@@ -8,18 +8,54 @@
     margin: auto;
     text-align: center;
     h1 {
-        margin: 20px 0;
+        margin: 0px 0;
     }
     h2 {
-        margin: 10px 0;
+        margin: 0px 0;
     }
+}
+
+.playerListCont {
+    width: 100%;
+
+    p {
+        padding-bottom: 10px;
+    }
+}
+
+.playerList {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    span {
+        border: 1px solid white;
+        width: 30px;
+        height: 30px;
+        padding-top: 2.5px;
+        border-radius: 100%;
+    }
+}
+
+.currentPlayer {
+    background-color: var(--pop-color);
 }
 
 .playerBoard {
     display: flex;
-    gap: 20px;
+    row-gap: 20px;
     flex-wrap: wrap;
     max-width: 386px;
+    justify-content: space-between;
+}
+
+.scorecard {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -62,7 +98,33 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
+.playBtns {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+
+    button {
+        width: 100%;
+        min-width: 147px;
+        font-size: 32px;
+        padding: 20px;
+    }
+}
+
+.statsCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px) {
+    .gameCont {
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0 20px;
+    }
+    .playerBoard {
+    }
     .dice {
         width: 90px;
         height: 90px;

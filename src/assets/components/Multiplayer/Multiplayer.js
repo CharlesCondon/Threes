@@ -276,7 +276,7 @@ function Multiplayer() {
 
     return (
         <div className={styles.gameCont}>
-            {/* <h1>Game: {gameCode}</h1> */}
+            <h1>Game Code: {gameCode}</h1>
             
             {gameDone ? getWinner() : <h1>It's {isMyTurn ? "your" : "their"} turn</h1>}
             <div>
