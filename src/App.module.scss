@@ -4,7 +4,7 @@
     --sub-accent: rgb(255, 225, 197);
     --dark-accent: rgb(55, 58, 64);
     --pop-color: rgb(255, 117, 11);
-  }
+}
 
 * {
     margin: 0;
@@ -26,6 +26,7 @@ button {
 }
 
 .App {
+    height: 100%;
     display: flex;
     flex-direction: row;
     background-color: var(--dark-accent);
@@ -35,6 +36,6 @@ button {
 @media only screen and (max-width: 768px) {
     .App {
         flex-direction: column;
-        min-height: 100vh;
+        
     }
 }
