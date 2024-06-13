@@ -8,7 +8,7 @@ function Home() {
     return (
         <div className={styles.homeCont}>
             <h1>The Game is Threes</h1>
-            <h2>Roll 6 dice, lowest score wins</h2>
+            <h3>Roll 6 dice, lowest score wins</h3>
             <button onClick={() => navigate('/play')}>Play Now</button>
         </div>
     )
