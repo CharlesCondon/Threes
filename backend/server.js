@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
             if (!existingPlayer) {
                 games[gameCode].players.push(new Player(userId));
             }
-            console.log('joining room')
+            //console.log('joining room')
             //console.log(games[gameCode])
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
@@ -127,7 +127,7 @@ io.on('connection', (socket) => {
             games[gameCode].score = score;
             
             // Example dice roll logic, adjust per game rules
-            console.log("rolling dice")
+            //console.log("rolling dice")
             games[gameCode].rollNum += 1;
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
@@ -157,7 +157,7 @@ io.on('connection', (socket) => {
             games[gameCode].score = 0;
             games[gameCode].rollNum = 0;
             games[gameCode].diceLeft = 6;
-            console.log(games[gameCode]);
+            //console.log(games[gameCode]);
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     })
@@ -171,18 +171,7 @@ io.on('connection', (socket) => {
         games[gameCode].dice = cloneDice(initialDice);
         games[gameCode].done = false;
         games[gameCode].winner = '';
-        // = { 
-        //     players: [new Player(userId, 0)],
-        //     turn: userId,
-        //     score: 0,
-        //     topScore: 0,
-        //     rollNum: 0,
-        //     turnNum: 0,
-        //     diceLeft: 6,
-        //     dice: cloneDice(initialDice),
-        //     done: false,
-        //     winner: ''
-        // }; // Create a new game with one player
+
         io.to(gameCode).emit('gameState', games[gameCode]);
     })
 });

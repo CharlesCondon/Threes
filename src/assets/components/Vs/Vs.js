@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styles from './Vs.module.scss'
 import { useNavigate } from 'react-router-dom'
-import Friend from './modes/Friend'
 import JoinGame from './modes/JoinGame'
 import SocketContext from '../../context/SocketContext';
 
@@ -20,10 +19,6 @@ function Vs() {
 
     React.useEffect(() => {
         if (!socket) return;
-        // // Listen for gameCreated from server
-        // socket.on('gameCreated', (code) => {
-        //     navigate(`./${code}`);
-        // });
 
         const handleGameCreated = (code) => {
             navigate(`./${code}`);

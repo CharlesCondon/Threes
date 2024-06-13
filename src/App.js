@@ -6,6 +6,7 @@ import Play from './assets/components/Play/Play';
 import Navbar from './assets/components/Navbar/Navbar';
 import Vs from './assets/components/Vs/Vs';
 import Multiplayer from './assets/components/Multiplayer/Multiplayer';
+import SocketProvider from './assets/context/SocketProvider';
 
 function App() {
 	return (
@@ -21,12 +22,18 @@ function App() {
 				<Route path='/play/solo' element={
 					<Game/>
 				} />
-				<Route path='/play/vs' element={
-					<Vs/>
-				} />
-				<Route path='/play/vs/:gameCode' element={
-					<Multiplayer/>
-				} />
+				
+					<Route path='/play/vs' element={
+						<SocketProvider>
+							<Vs/>
+						</SocketProvider>
+					} />
+					<Route path='/play/vs/:gameCode' element={
+						<SocketProvider>
+							<Multiplayer/>
+						</SocketProvider>
+					} />
+				
 			</Routes>
 		</div>
 	);

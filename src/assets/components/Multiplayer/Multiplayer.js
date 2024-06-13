@@ -37,7 +37,6 @@ function Multiplayer2() {
 
     useEffect(() => {
         if (socket) {
-            //console.log(socket._opts.query.userId)
             socket.emit('joinRoom', gameCode);
             setPlayerId(socket._opts.query.userId);
 
