@@ -110,7 +110,9 @@
 }
 
 .individualScore {
-    background-color: var(--dark-accent);
+    background-color: var(--sub-accent);
+    color: var(--dark-accent);
+    font-weight: 500;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 10px;
@@ -127,8 +129,8 @@
 }
 
 .resetScores {
-    background-color: var(--dark-accent);
-    color: var(--sub-accent);
+    background-color: var(--sub-accent);
+    color: var(--dark-accent);
     padding: 3px 5px;
     margin-bottom: .5rem;
     width: 100%;
@@ -176,8 +178,8 @@
 
 @media only screen and (max-width: 768px) {
     .gameCont {
-        padding: 0 20px;
-        margin: 36px auto;
+        padding: 36px 20px 0 20px;
+        margin: auto;
         justify-content: flex-start;
         h1 {
             font-size: 28px;
@@ -215,5 +217,14 @@
     }
     .individualScore{
         background-color: var(--dark-accent);
+        color: var(--sub-accent);
+    }
+    .resetScores {
+        background-color: var(--dark-accent);
+        color: var(--sub-accent);
+        padding: 3px 5px;
+        margin-bottom: .5rem;
+        width: 100%;
+        font-weight: 100;
     }
 }
