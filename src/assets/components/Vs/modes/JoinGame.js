@@ -16,7 +16,7 @@ function JoinGame({ setMode }) {
 
     React.useEffect(() => {
         if (!socket) return;
-        
+
         const handleGameJoined = (state) => {
             navigate(`./${code}`);
         };
@@ -38,14 +38,14 @@ function JoinGame({ setMode }) {
     
     return (
         <div className={styles.friendCont}>
-            <div className={styles.friendText}>
-                <h2>Guest</h2>
+            <div>
+                <h1>Join An Existing Game</h1>
             </div>
             <div className={styles.friendText}>
                 <input type="text" value={gameCode} onChange={(e) => setGameCode(e.target.value)} placeholder="Enter Game Code" />
                 <button onClick={joinGame}>Enter</button>
             </div>
-            <button onClick={() => setMode(0)}>CANCEL</button>
+            <button className={styles.backBtn} onClick={() => setMode(0)}>Back</button>
         </div>
     )
 }

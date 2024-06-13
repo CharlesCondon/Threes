@@ -24,6 +24,7 @@ function Multiplayer2() {
     const [isMyTurn, setIsMyTurn] = useState(false);
     const [playerId, setPlayerId] = useState();
     const [players, setPlayers] = useState([{id:'P1'}]);
+    const [pNum, setPnum] = useState({id:'P1',pos:0})
     const [rollNum, setRollNum] = useState(0);
     const [gameDone, setGameDone] = useState(false);
     const [gameWinner, setGameWinner] = useState("");
@@ -40,6 +41,7 @@ function Multiplayer2() {
                 setTurn(state.turnNum);
                 setIsMyTurn(state.turn === playerId);
                 setPlayers(state.players);
+                setPnum(state.players.find(player => player.id === playerId))
                 setTopScore(state.topScore);
                 setScore(state.score);
                 setRollNum(state.rollNum);
@@ -54,34 +56,11 @@ function Multiplayer2() {
             return () => {
                 socket.off('gameState', handleGameState); // Cleanup listener
             };
-            
-            // socket.on('gameState', (state) => {
-            //     //console.log(state)
-            //     // setP1(state.p1)
-            //     // setP2(state.p2)
-            //     // setOpp(state.players.find(id => id !== playerId))
-            //     // // setDice(state.dice);
-            //     setTurn(state.turnNum);
-            //     setIsMyTurn(state.turn === playerId);
-            //     console.log(state.players)
-            //     setPlayers(state.players);
-            //     // setGameDone(state.done)
-            // });
-    
-            // socket.on('connect', () => {
-            //     setPlayerId(socket._opts.query.userId);
-            // });
-    
-            // return () => {
-            //     socket.off('connect');
-            //     socket.off('gameState');
-            // };
         }
         
     }, [gameCode, playerId, socket]);
 
     const handleSubmit = () => {
-        console.log(score)
         socket.emit('submitDice', gameCode, score)
         // if (!localStorage.getItem("scores")) {
         //     console.log('nothing')
@@ -102,7 +81,6 @@ function Multiplayer2() {
     }
 
     const rollDice = () => {
-        console.log(minPick)
         if (diceNum + rollNum > 6) {
             return;
         }
@@ -135,6 +113,10 @@ function Multiplayer2() {
         setMinPick(0);   
     };
 
+    const rematch = () => {
+        socket.emit('rematch', gameCode);
+    }
+
     return (
         <div className={styles.gameCont}>
             
@@ -154,7 +136,7 @@ function Multiplayer2() {
             </div>
             
             <div className={styles.scorecard}>
-                <h3>Turn: P{turn+1}</h3>
+                <h3>You: P{pNum.pos+1}</h3>
                 <h3>Score: {score}</h3>
             </div>
             <div className={styles.playerBoard}>
@@ -168,12 +150,15 @@ function Multiplayer2() {
                 <Dice num={4} value={dice[4].value} turn={rollNum} setDiceNum={setDiceNum} diceNum={diceNum} setScore={setScore} score={score} dice={dice} setDice={setDice} setMinPick={setMinPick} minPick={minPick}></Dice>
                 <Dice num={5} value={dice[5].value} turn={rollNum} setDiceNum={setDiceNum} diceNum={diceNum} setScore={setScore} score={score} dice={dice} setDice={setDice} setMinPick={setMinPick} minPick={minPick}></Dice>
             </div>
-
-            <div className={styles.playBtns}>
+            
+            {gameDone && playerId===players[0].id ? <div className={styles.playBtns}><button onClick={rematch}>Rematch</button></div>
+            :<div className={styles.playBtns}>
                 {diceNum === 0 
                     ? <button onClick={handleSubmit}>Submit</button>
                     : <button disabled={!isMyTurn} onClick={rollDice}>Roll</button>}
-            </div>
+            </div>}
+            
+            
             
             <div className={styles.statsCont}>
                 <h3>Roll #: {rollNum}</h3>

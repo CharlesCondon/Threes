@@ -16,16 +16,80 @@
 .friendCont {
     display: flex;
     flex-direction: column;
-    background-color: gray;
-    height: 50%;
+    background-color: transparent;
     justify-content: space-between;
     padding: 20px;
     border-radius: 10px;
+    width: 100%;
     min-width: 30%;
+    gap: 40px;
+    max-width: 386px;
+
+    .friendText {
+        display: flex;
+        gap: 10px;
+    }
+    h1 {
+        color: var(--sub-accent);
+        text-align: center;
+    }
+    input {
+        flex: 1;
+        font-size: 20px;
+        padding-left: 10px;
+        border-radius: 5px;
+        border: none;
+    }
+    button {
+        font-size: 20px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 
+            0px 0px 0px 1px rgba(0, 0, 0, 0.06), 
+            0px 1px 1px -0.5px rgba(0, 0, 0, 0.06), 
+            0px 3px 3px -1.5px rgba(0, 0, 0, 0.06), 
+            0px 6px 6px -3px rgba(0, 0, 0, 0.06), 
+            0px 12px 12px -6px rgba(0, 0, 0, 0.06), 
+            0px 24px 24px -12px rgba(0, 0, 0, 0.06);
+    }
 }
 
 @media only screen and (max-width: 600px) {
-    .vsCont {
-        // flex: 1 1 auto;
+    .friendCont {
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        justify-content: space-between;
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+        min-width: 30%;
+        gap: 40px;
+    
+        .friendText {
+            display: flex;
+            gap: 10px;
+        }
+        h2 {
+            color: var(--sub-accent);
+            text-align: center;
+        }
+        input {
+            flex: 1;
+            font-size: 20px;
+            padding-left: 5px;
+        }
+        button {
+            font-size: 20px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 
+                0px 0px 0px 1px rgba(0, 0, 0, 0.06), 
+                0px 1px 1px -0.5px rgba(0, 0, 0, 0.06), 
+                0px 3px 3px -1.5px rgba(0, 0, 0, 0.06), 
+                0px 6px 6px -3px rgba(0, 0, 0, 0.06), 
+                0px 12px 12px -6px rgba(0, 0, 0, 0.06), 
+                0px 24px 24px -12px rgba(0, 0, 0, 0.06);
+        }
     }
 }

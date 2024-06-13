@@ -161,6 +161,30 @@ io.on('connection', (socket) => {
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     })
+    socket.on('rematch', (gameCode) => {
+        games[gameCode].turn = userId;
+        games[gameCode].score = 0;
+        games[gameCode].topScore = 0;
+        games[gameCode].rollNum = 0;
+        games[gameCode].turnNum = 0;
+        games[gameCode].diceLeft = 6;
+        games[gameCode].dice = cloneDice(initialDice);
+        games[gameCode].done = false;
+        games[gameCode].winner = '';
+        // = { 
+        //     players: [new Player(userId, 0)],
+        //     turn: userId,
+        //     score: 0,
+        //     topScore: 0,
+        //     rollNum: 0,
+        //     turnNum: 0,
+        //     diceLeft: 6,
+        //     dice: cloneDice(initialDice),
+        //     done: false,
+        //     winner: ''
+        // }; // Create a new game with one player
+        io.to(gameCode).emit('gameState', games[gameCode]);
+    })
 });
 
 const port = process.env.PORT || 8080;
