@@ -179,7 +179,8 @@
 @media only screen and (max-width: 768px) {
     .gameCont {
         padding: 36px 20px 0 20px;
-        margin: auto;
+        margin: 0;
+        height: fit-content;
         justify-content: flex-start;
         h1 {
             font-size: 28px;
