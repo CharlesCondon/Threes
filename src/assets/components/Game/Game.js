@@ -25,6 +25,10 @@ function Game() {
     });
     const intervalRef = useRef(null);
 
+    React.useEffect(() => {
+        document.title = 'Threes | Solo';
+    }, []);
+
     function handleRoll() {
         if (diceNum + turn > 6) {
             return;

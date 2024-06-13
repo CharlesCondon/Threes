@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom'
 function Play() {
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        document.title = 'Threes';
+    }, []);
+    
     return (
         <div className={styles.playCont}>
             <h1>Select Mode</h1>

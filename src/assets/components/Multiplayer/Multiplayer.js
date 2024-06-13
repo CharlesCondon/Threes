@@ -32,6 +32,10 @@ function Multiplayer2() {
     const socket = useContext(SocketContext);
 
     useEffect(() => {
+        document.title = 'Threes | Multiplayer';
+    }, []);
+
+    useEffect(() => {
         if (socket) {
             //console.log(socket._opts.query.userId)
             socket.emit('joinRoom', gameCode);

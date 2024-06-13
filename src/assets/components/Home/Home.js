@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        document.title = 'Threes';
+    }, []);
+
     return (
         <div className={styles.homeCont}>
             <h1>The Game is Threes</h1>

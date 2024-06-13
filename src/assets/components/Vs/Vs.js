@@ -15,6 +15,10 @@ function Vs() {
     }
 
     React.useEffect(() => {
+        document.title = 'Threes';
+    }, []);
+
+    React.useEffect(() => {
         if (!socket) return;
         // // Listen for gameCreated from server
         // socket.on('gameCreated', (code) => {
