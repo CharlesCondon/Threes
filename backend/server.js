@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
             } else {
                 console.log(`Player ${userId} already in game ${gameCode}`);
             }
-            console.log(games[gameCode])
+            // console.log(games[gameCode])
             //io.to(gameCode).emit('gameStart', games[gameCode]); // Notify all players to start the game
         } else {
             socket.emit('error', 'Game is full or does not exist');
@@ -114,8 +114,7 @@ io.on('connection', (socket) => {
             if (!existingPlayer) {
                 games[gameCode].players.push(new Player(userId));
             }
-            //console.log('joining room')
-            //console.log(games[gameCode])
+
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     });
@@ -127,7 +126,6 @@ io.on('connection', (socket) => {
             games[gameCode].score = score;
             
             // Example dice roll logic, adjust per game rules
-            //console.log("rolling dice")
             games[gameCode].rollNum += 1;
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
@@ -157,7 +155,7 @@ io.on('connection', (socket) => {
             games[gameCode].score = 0;
             games[gameCode].rollNum = 0;
             games[gameCode].diceLeft = 6;
-            //console.log(games[gameCode]);
+
             io.to(gameCode).emit('gameState', games[gameCode]);
         }
     })
