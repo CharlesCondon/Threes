@@ -23,7 +23,7 @@
 
 .playerBoard {
     display: flex;
-    gap: 20px;
+    row-gap: 20px;
     flex-wrap: wrap;
     max-width: 386px;
     justify-content: space-between;
@@ -171,7 +171,7 @@
 
 @media only screen and (max-width: 768px) {
     .gameCont {
-        padding: 0 40px;
+        padding: 0 20px;
         margin: 36px auto;
         justify-content: flex-start;
         h1 {

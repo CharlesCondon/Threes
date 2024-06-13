@@ -174,8 +174,8 @@ function Multiplayer2() {
             </div>
             
             <div className={styles.statsCont}>
-                <h1>Roll #: {rollNum}</h1>
-                <h1>Dice Left: {diceNum}</h1>
+                <h2>Roll #: {rollNum}</h2>
+                <h2>Dice Left: {diceNum}</h2>
             </div>
         </div>
     )

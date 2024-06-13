@@ -20,6 +20,7 @@
 
     p {
         padding-bottom: 10px;
+        color: var(--sub-accent);
     }
 }
 
@@ -40,7 +41,8 @@
 }
 
 .currentPlayer {
-    background-color: var(--pop-color);
+    border: 1px solid var(--pop-color) !important;
+    color: var(--pop-color);
 }
 
 .playerBoard {
@@ -57,6 +59,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    color: var(--sub-accent);
 }
 
 .dice {
@@ -115,6 +118,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    color: var(--sub-accent);
 }
 
 @media only screen and (max-width: 768px) {
