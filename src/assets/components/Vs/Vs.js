@@ -44,7 +44,7 @@ function Vs() {
         if (mode === 0) {
             return <>
                 <h1>Select Mode</h1>
-                <button className={styles.vsSelect} disabled onClick={() => navigate('./')}>Computer</button>
+                {/* <button className={styles.vsSelect} disabled onClick={() => navigate('./')}>Computer</button> */}
                 <button className={styles.vsSelect} onClick={() => setMode(1)}>Join a Game</button>
                 <button className={styles.vsSelect} onClick={() => createGame()}>Create a Game</button>            
             </>

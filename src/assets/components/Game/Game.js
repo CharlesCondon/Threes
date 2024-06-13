@@ -148,8 +148,8 @@ function Game() {
                 </div>
                 
                 <div className={styles.statsCont}>
-                    <h1>Turn: {turn}</h1>
-                    <h1>Dice Left: {diceNum}</h1>
+                    <h2>Turn: {turn}</h2>
+                    <h2>Dice Left: {diceNum}</h2>
                 </div>
                 
                 
