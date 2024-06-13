@@ -193,8 +193,7 @@
         }
     }
     .helpModal {
-        width: fit-content;
-        min-width: 300px;
+        width: calc(100% - 40px);   
         top: 35%;
     }
     .scoreList {
