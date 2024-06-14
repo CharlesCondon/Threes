@@ -220,7 +220,7 @@ function Multiplayer() {
             :<div className={styles.playBtns}>
                 {diceNum === 0 
                     ? <button onClick={handleSubmit}>Submit</button>
-                    : <button disabled={!isMyTurn || players.length < 1} onClick={rollDice}>Roll</button>}
+                    : <button disabled={!isMyTurn || players.length < 2} onClick={rollDice}>Roll</button>}
             </div>}
             
             
