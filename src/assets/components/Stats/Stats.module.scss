@@ -1,5 +1,12 @@
 .statsCont {
     padding: 0 20px;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 100%;
 }
 
 .statsHead {
@@ -38,4 +45,13 @@
     align-items: center;
     text-align: center;
     flex: 1 1 calc(33.33% - 20px);
+}
+
+@media only screen and (max-width: 768px) {
+    .statsCont {
+        padding: 0 20px;
+        justify-content: flex-start;
+        margin: 2rem 0 0 0;
+        height: 100%;
+    }
 }

@@ -32,11 +32,11 @@ function Stats() {
                 <h1>Multiplayer Statistics</h1>
                 <div className={styles.statList}>
                     <div className={styles.statItem}>
-                        <h2>{games ? games : 'X'}</h2>
+                        <h2>{games >= 0 ? games : 'X'}</h2>
                         <p>Games</p>
                     </div>
                     <div className={styles.statItem}>
-                        <h2>{wins ? wins : 'X'}</h2>
+                        <h2>{wins >= 0 ? wins : 'X'}</h2>
                         <p>Wins</p>
                     </div>
                     <div className={styles.statItem}>
@@ -44,11 +44,11 @@ function Stats() {
                         <p>Win %</p>
                     </div>
                     <div className={styles.statItem}>
-                        <h2>{curStreak ? curStreak : 'X'}</h2>
+                        <h2>{curStreak >= 0 ? curStreak : 'X'}</h2>
                         <p>Current<br></br>Streak</p>
                     </div>
                     <div className={styles.statItem}>
-                        <h2>{maxStreak ? maxStreak : 'X'}</h2>
+                        <h2>{maxStreak >= 0 ? maxStreak : 'X'}</h2>
                         <p>Max<br></br>Streak</p>
                     </div>
                     <div className={styles.statItem}>
