@@ -141,8 +141,9 @@ io.on('connection', (socket) => {
 
             if ((games[gameCode].turnNum + 1) === games[gameCode].players.length) { // check if last person
                 games[gameCode].done = true;
-                const winner = games[gameCode].players.find(player => player.score === games[gameCode].topScore)
+                const winner = games[gameCode].players.filter(player => player.score === games[gameCode].topScore)
                 games[gameCode].winner = winner;
+                //console.log(winner);
                 games[gameCode].turn = "";
             } else { // next player's turn
                 games[gameCode].turnNum += 1;

@@ -27,7 +27,7 @@ function Multiplayer2() {
     const [pNum, setPnum] = useState({id:'P1',pos:0})
     const [rollNum, setRollNum] = useState(0);
     const [gameDone, setGameDone] = useState(false);
-    const [gameWinner, setGameWinner] = useState("");
+    const [gameWinner, setGameWinner] = useState([{id:'P1',pos:0}]);
     const intervalRef = useRef(null);
     const socket = useContext(SocketContext);
 
@@ -51,7 +51,7 @@ function Multiplayer2() {
                 setDice(state.dice);
                 setDiceNum(state.diceLeft);
                 setGameDone(state.done);
-                setGameWinner(state.winner.pos);
+                setGameWinner(state.winner);
             };
 
             socket.on('gameState', handleGameState);
@@ -120,6 +120,19 @@ function Multiplayer2() {
         socket.emit('rematch', gameCode);
     }
 
+    function getWinner(winners) {
+        if (winners.length === 1) {
+            return <><h2>WINNER:</h2><h1>P{winners[0].pos+1}</h1></>
+        }
+        if (winners.length > 1) {
+            return <><h2>TIE:</h2>{winners.map((w,i) => {
+                if (i !== winners.length-1) {
+                    return <><h1>P{w.pos+1}</h1><h2>&</h2></>
+                }
+                return <h1>P{w.pos+1}</h1>})}</>
+        }
+    }
+
     return (
         <div className={styles.gameCont}>
             
@@ -134,7 +147,7 @@ function Multiplayer2() {
             </div>
             
             <div className={styles.topScore}>
-                {gameDone ? <><h2>WINNER:</h2><h1>P{gameWinner+1}</h1></>
+                {gameDone ? getWinner(gameWinner)
                 : <><h2>Score To Beat:</h2><h1>{topScore}</h1></>}
             </div>
             

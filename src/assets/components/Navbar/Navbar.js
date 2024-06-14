@@ -31,8 +31,8 @@ function Navbar() {
                     </div>
                     n disabled={true} onClick={() => navigate('/')}>LOGIN / SIGNUP</button> */}
                     <div className={styles.navFooter}>
-                        <button disabled={true} onClick={() => navigate('/')}>Settings</button>
-                        <p>v.0.4</p>
+                        {/* <button disabled={true} onClick={() => navigate('/')}>Settings</button> */}
+                        <p>v.0.6</p>
                     </div>
                 </div>
             </div>
