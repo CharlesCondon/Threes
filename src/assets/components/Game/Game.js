@@ -58,7 +58,7 @@ function Game() {
 
         setTimeout(() => {
             clearInterval(intervalRef.current);
-        }, 1000);
+        }, 500);
 
         setTurn(turn+1);
         setMinPick(0);

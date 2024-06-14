@@ -26,8 +26,9 @@ function Stats() {
         <div className={styles.statsCont}>
             <div className={styles.statsHead}>
                 <img src={three} alt='' />
+                {/* <h1>Threes</h1> */}
             </div>
-
+            
             <div className={styles.statsInfo}>
                 <h1>Multiplayer Statistics</h1>
                 <div className={styles.statList}>

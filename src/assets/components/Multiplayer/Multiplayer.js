@@ -186,7 +186,10 @@ function Multiplayer() {
         <div className={styles.gameCont}>
             
             <div className={styles.playerListCont}>
-                <p>Game Code: {gameCode}</p>
+                <div className={styles.gameCodeCont}>
+                    <span>Game Code:</span><p>{gameCode}</p>
+                </div>
+                
                 <div className={styles.playerList}>
                     {players.map((p,i) => {
                         return <span className={(turn===i) ? styles.currentPlayer : ''} key={i}>P{i+1}</span>

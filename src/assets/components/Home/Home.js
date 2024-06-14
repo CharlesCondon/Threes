@@ -36,8 +36,8 @@ function Home() {
         <div className={styles.homeCont}>
             <div className={styles.homeHead}>
                 <h1 className={styles.headTitle}>Threes</h1>
+                <h3>Roll 6 dice, lowest score wins</h3>
             </div>
-            <h3>Roll 6 dice, lowest score wins</h3>
             <button onClick={() => navigate('/play')}>Play Now</button>
             <div className={styles.homeDiceCont}>
                 {dice.map((d,i) => {
