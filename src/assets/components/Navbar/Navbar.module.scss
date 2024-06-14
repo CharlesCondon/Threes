@@ -62,6 +62,16 @@ $background-color: rgb(17, 17, 17);
     }
 }
 
+.navImg {
+    position: relative;
+    z-index: 100;
+    max-width: 40px;
+    margin: 1.25rem auto 0 auto;
+}
+img {
+    width: 100%;
+}
+
 .navFooter {
     display: flex;
     flex-direction: row;
@@ -81,6 +91,9 @@ $background-color: rgb(17, 17, 17);
 }
 
 @media only screen and (max-width: 768px) {
+    .navImg {
+        margin: 1.25rem 0 0 0;
+    }
     .navCont {
         flex-direction: column;
         height: auto;
