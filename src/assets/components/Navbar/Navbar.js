@@ -25,11 +25,9 @@ function Navbar() {
                 <div className={`${window.innerWidth < 768 ? styles.sidebar : styles.navBtns} ${isSidebarOpen ? styles.open : ''}`}>
                     <button onClick={() => handleNav('/')}>HOME</button>
                     <button onClick={() => handleNav('/play')}>PLAY</button>
-                    {/* <button disabled={true} onClick={() => navigate('/')}>STATS</button>
-                    <button disabled={true} onClick={() => navigate('/')}>HOW TO PLAY</button>
-                    <butto
-                    </div>
-                    n disabled={true} onClick={() => navigate('/')}>LOGIN / SIGNUP</button> */}
+                    <button onClick={() => handleNav('/stats')}>STATS</button>
+                    <button disabled={true} onClick={() => handleNav('/')}>HOW TO PLAY</button>
+                    {/* <button disabled={true} onClick={() => navigate('/')}>LOGIN / SIGNUP</button> */}
                     <div className={styles.navFooter}>
                         {/* <button disabled={true} onClick={() => navigate('/')}>Settings</button> */}
                         <p>v.0.6</p>

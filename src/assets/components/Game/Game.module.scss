@@ -139,7 +139,7 @@
 
 .helpModal {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--sub-accent);
@@ -147,6 +147,10 @@
     padding: 32px;
     border-radius: 10px;
     color: var(--dark-accent);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     box-shadow: 
         0px 0px 0px 1px rgba(0,0,0,.06),
         0px 1px 1px -0.5px rgba(0,0,0,.06),
@@ -179,7 +183,7 @@
 @media only screen and (max-width: 768px) {
     .gameCont {
         padding: 36px 20px 0 20px;
-        margin: 0;
+        margin: 0 auto;
         height: fit-content;
         justify-content: flex-start;
         h1 {
@@ -194,8 +198,30 @@
         }
     }
     .helpModal {
-        width: calc(100% - 40px);   
-        top: 35%;
+        width: calc(100% - 60px);
+        max-width: 430px;
+        top: 40%;
+    }
+    .helpModal ul {
+        list-style: none; /* Remove default bullets */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+    }
+    
+    .helpModal ul li {
+        position: relative;
+        padding-left: 1.5em; /* Space for custom bullet */
+        margin-bottom: 0.5em; /* Space between items */
+    }
+    
+    .helpModal ul li::before {
+        content: "•"; /* Custom bullet */
+        position: absolute;
+        left: 0;
+        top: -2px;
+        color: #000; /* Bullet color */
+        font-size: 1.5em; /* Adjust bullet size */
+        line-height: 1; /* Align bullet vertically */
     }
     .scoreList {
         background-color: var(--accent-color);
