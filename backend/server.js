@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 const corsOptions = {
-    origin: ["http://localhost:3000","https://www.threesdice.com/play/vs"], // Adjust according to your security requirements
+    origin: ["http://localhost:3000","https://www.threesdice.com"], // Adjust according to your security requirements
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true
@@ -16,7 +16,7 @@ app.use(cors(corsOptions)); // Enable CORS
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000","https://www.threesdice.com/play/vs"], // Adjust according to your security requirements
+    origin: ["http://localhost:3000","https://www.threesdice.com"], // Adjust according to your security requirements
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true
