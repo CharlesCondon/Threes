@@ -55,6 +55,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .vsCont {
+        margin-top: 5rem;
+    }
     .friendCont {
         display: flex;
         flex-direction: column;
