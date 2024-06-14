@@ -13,12 +13,13 @@ function Stats() {
         document.title = 'Threes | Stats';
 
         let storedStats = JSON.parse(localStorage.getItem('stats'));
-        setGames(storedStats.games);
-        setWins(storedStats.wins);
-        setCurStreak(storedStats.curStreak);
-        setmaxStreak(storedStats.maxStreak);
-        setBestScore(storedStats.bestScore);
-
+        if (storedStats) {
+            setGames(storedStats.games);
+            setWins(storedStats.wins);
+            setCurStreak(storedStats.curStreak);
+            setmaxStreak(storedStats.maxStreak);
+            setBestScore(storedStats.bestScore);
+        }
     }, []);
 
     return (
