@@ -6,10 +6,36 @@
     width: 100%;
     display: flex;
     justify-content: center;
-
+    margin-bottom: 20px;
     img {
         width: 100%;
-        max-width: 56px;
-        height: 56px;
+        max-width: 100px;
+        height: 100px;
     }
+}
+
+.statsInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h1 {
+        text-align: center;
+    }
+}
+
+.statList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 calc(33.33% - 20px);
 }

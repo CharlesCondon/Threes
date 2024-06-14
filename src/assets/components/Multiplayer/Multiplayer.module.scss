@@ -126,6 +126,10 @@
     color: var(--sub-accent);
 }
 
+.tieAnd {
+    margin-left: 10px !important;
+}
+
 @media only screen and (max-width: 768px) {
     .gameCont {
         justify-content: flex-start;

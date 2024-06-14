@@ -171,7 +171,7 @@ io.on('connection', (socket) => {
         games[gameCode].done = false;
         games[gameCode].winner = '';
 
-        io.to(gameCode).emit('gameState', games[gameCode]);
+        io.to(gameCode).emit('rematch', games[gameCode]);
     })
 });
 

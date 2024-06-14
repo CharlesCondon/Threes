@@ -66,7 +66,7 @@ function Game() {
     
     function handleSubmit() {
         if (!localStorage.getItem("scores")) {
-            console.log('nothing')
+            console.log('no scores')
             localStorage.setItem("scores", JSON.stringify([{score:score,turn:turn}]))
         } else {
             localStorage.setItem("scores", JSON.stringify([...storedScores,{score:score,turn:turn}]))

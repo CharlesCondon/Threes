@@ -26,7 +26,7 @@ function Navbar() {
                     <button onClick={() => handleNav('/')}>HOME</button>
                     <button onClick={() => handleNav('/play')}>PLAY</button>
                     <button onClick={() => handleNav('/stats')}>STATS</button>
-                    <button disabled={true} onClick={() => handleNav('/')}>HOW TO PLAY</button>
+                    {/* <button disabled={true} onClick={() => handleNav('/')}>HOW TO PLAY</button> */}
                     {/* <button disabled={true} onClick={() => navigate('/')}>LOGIN / SIGNUP</button> */}
                     <div className={styles.navFooter}>
                         {/* <button disabled={true} onClick={() => navigate('/')}>Settings</button> */}
