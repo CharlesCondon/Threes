@@ -219,10 +219,12 @@ function Multiplayer() {
                     <h3>Get the lowest combined dice score.</h3>
                     <div>
                         <ul>
+                            <li>Send this URL to a friend or share the room code to start playing together!</li><br></br>
                             <li>After each roll, select at least one die to lock in.</li>
                             <li>Keep rolling until all dice are locked in.</li>
                             <li>The lower the score, the better.</li>
                             <li>Threes equal zero.</li>
+                            
                         </ul>
                     </div>
                 </div>}
