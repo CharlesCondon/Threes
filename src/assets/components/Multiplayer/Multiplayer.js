@@ -93,11 +93,11 @@ function Multiplayer() {
     useEffect(() => {
         const gameProcessed = localStorage.getItem("currentGameProcessed");
 
-        console.log("game done: " + gameDone)
-        console.log("game processed: " + gameProcessed)
+        //console.log("game done: " + gameDone)
+        //console.log("game processed: " + gameProcessed)
 
         if (gameDone && !JSON.parse(gameProcessed)) {
-            console.log('processing game')
+            //console.log('processing game')
             processWinner(gameWinner);
             localStorage.setItem("currentGameProcessed", JSON.stringify(true));
         }
@@ -147,7 +147,7 @@ function Multiplayer() {
 
     const processWinner = (winners) => {
         let stats = localStorage.getItem("stats");
-        console.log(stats)
+        //console.log(stats)
         if (!stats) {
             stats = {games:1, wins:0, bestScore:pNum.score, curStreak:0, maxStreak:0};
         } else {
@@ -172,7 +172,7 @@ function Multiplayer() {
             }
             stats.curStreak = 0;
         }
-        console.log(stats)
+        //console.log(stats)
         localStorage.setItem("stats", JSON.stringify(stats));
     };
 
