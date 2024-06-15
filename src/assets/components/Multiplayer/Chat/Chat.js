@@ -46,11 +46,11 @@ const Chat = ({ gameCode, players, chat, open }) => {
     return (
         <div className={`${styles.chatContainer} ${!open ? styles.chatClosed : ''}`}>
             <div className={styles.chatMessages}>
-                {messages.map((msg, index) => (
+                {messages ? messages.map((msg, index) => (
                     <div key={index} className={styles.chatMessage}>
                         <span className={styles.chatUser}>P{msg.userPos+1}:</span> {msg.message}
                     </div>
-                ))}
+                )): <></>}
             </div>
             <form onSubmit={sendMessage} className={styles.chatForm}>
                 <input
