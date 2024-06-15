@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import SocketContext from '../../context/SocketContext';
 import styles from './Multiplayer.module.scss'
 import Dice from '../Game/Dice/Dice';
+import Chat from './Chat/Chat';
+import shareImg from '../../images/share.png';
+import chatImg from '../../images/comment.png';
 
 const initialDice = [
     {value:0, locked:false, turnLock:0},
@@ -28,6 +31,8 @@ function Multiplayer() {
     const [rollNum, setRollNum] = useState(0);
     const [gameDone, setGameDone] = useState(false);
     const [gameWinner, setGameWinner] = useState([{id:'P1',pos:0}]);
+    const [chatOpen, setChatOpen] = useState(false);
+    const [chatHistory, setChatHistory] = useState([]);
     const intervalRef = useRef(null);
     const socket = useContext(SocketContext);
 
@@ -55,6 +60,7 @@ function Multiplayer() {
                 setDiceNum(state.diceLeft);
                 setGameDone(state.done);
                 setGameWinner(state.winner);
+                setChatHistory(state.chat);
             };
 
             const handleRematch = (state) => {
@@ -181,14 +187,27 @@ function Multiplayer() {
         }
         return;
     }
+    
+    const toggleChat = () => {
+        setChatOpen(!chatOpen);
+    };
 
     return (
         <div className={styles.gameCont}>
+            <Chat gameCode={gameCode} players={players} chat={chatHistory} open={chatOpen}/>
             
-            <div className={styles.playerListCont}>
-                <div className={styles.gameCodeCont}>
-                    <span>Game Code:</span><p>{gameCode}</p>
+            
+            <div className={styles.gameCodeCont}>
+                <div>
+                    <span>Room:</span><p>{gameCode}</p>
                 </div>
+                <div>
+                    {/* <button><img src={shareImg} alt='' /></button> */}
+                    <button onClick={toggleChat}><img src={chatImg} alt='' /></button>
+                </div>
+            </div>
+            <div className={styles.playerListCont}>
+                
                 
                 <div className={styles.playerList}>
                     {players.map((p,i) => {

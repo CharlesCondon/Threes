@@ -71,7 +71,8 @@ io.on('connection', (socket) => {
             diceLeft: 6,
             dice: cloneDice(initialDice),
             done: false,
-            winner: ''
+            winner: '',
+            chat: []
         }; // Create a new game with one player
         console.log("creating game");
         socket.join(gameCode);
@@ -84,6 +85,7 @@ io.on('connection', (socket) => {
             const existingPlayer = games[gameCode].players.find(player => player.id === userId);
 
             if (!existingPlayer) {
+                const newPos = games[gameCode].players.length;
                 games[gameCode].players.push(new Player(userId, games[gameCode].players.length));
                 socket.join(gameCode);
                 socket.emit('gameJoined', { gameCode, player: userId });
@@ -112,7 +114,8 @@ io.on('connection', (socket) => {
         } else {
             const existingPlayer = games[gameCode].players.find(player => player.id === userId);
             if (!existingPlayer) {
-                games[gameCode].players.push(new Player(userId));
+                const newPos = games[gameCode].players.length;
+                games[gameCode].players.push(new Player(userId, games[gameCode].players.length));
             }
 
             io.to(gameCode).emit('gameState', games[gameCode]);
@@ -173,6 +176,16 @@ io.on('connection', (socket) => {
 
         io.to(gameCode).emit('rematch', games[gameCode]);
     })
+
+    socket.on('chatMessage', (gameCode, message) => {
+        //console.log('Message: ' + message)
+        const userPos = games[gameCode].players.find((p) => p.id === userId).pos
+        const chatMessage = { userId, userPos, message, timestamp: new Date() };
+        games[gameCode].chat.push(chatMessage);
+        //console.log(games[gameCode])
+        io.to(gameCode).emit('gameState', games[gameCode]);
+    });
+
 });
 
 const port = process.env.PORT || 8080;

@@ -18,15 +18,20 @@
 
 .playerListCont {
     width: 100%;
-
-    p {
-        padding-bottom: 10px;
-        color: var(--sub-accent);
-        font-kerning: none;
-    }
 }
 
 .gameCodeCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0 0px 0;
+    button {
+        padding: 5px 5px 3px 5px;
+    }
+    img {
+        width: 20px;
+    }
     p {
         display: inline-block;
         margin-left: 10px;

@@ -11,7 +11,7 @@ const SocketProvider = ({ children }) => {
     function generateUserId() {
         let userId = localStorage.getItem("userId");
         if (!userId) {
-            userId = Math.random().toString(36).substring(2, 15); // Example ID generation
+            userId = Math.random().toString(36).substring(2, 8); // Example ID generation
             localStorage.setItem("userId", userId);
         }
         return userId;
