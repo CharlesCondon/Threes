@@ -33,6 +33,7 @@ function Multiplayer() {
     const [gameWinner, setGameWinner] = useState([{id:'P1',pos:0}]);
     const [chatOpen, setChatOpen] = useState(false);
     const [chatHistory, setChatHistory] = useState([]);
+    const [hideHelp, setHideHelp] = useState(true);
     const intervalRef = useRef(null);
     const socket = useContext(SocketContext);
 
@@ -192,6 +193,10 @@ function Multiplayer() {
         setChatOpen(!chatOpen);
     };
 
+    function toggleHelp() {
+        setHideHelp(!hideHelp)
+    }
+
     return (
         <div className={styles.gameCont}>
             <Chat gameCode={gameCode} players={players} chat={chatHistory} open={chatOpen}/>
@@ -203,9 +208,24 @@ function Multiplayer() {
                 </div>
                 <div>
                     {/* <button><img src={shareImg} alt='' /></button> */}
+                    <button className={styles.helpBtn} onClick={() => toggleHelp()}>?</button>
                     <button onClick={toggleChat}><img src={chatImg} alt='' /></button>
                 </div>
             </div>
+            {hideHelp ?  <></>
+                : <div className={styles.helpModal}>
+                    <button onClick={() => toggleHelp()}>X</button>
+                    <h2>How To Play</h2>
+                    <h3>Get the lowest combined dice score.</h3>
+                    <div>
+                        <ul>
+                            <li>After each roll, select at least one die to lock in.</li>
+                            <li>Keep rolling until all dice are locked in.</li>
+                            <li>The lower the score, the better.</li>
+                            <li>Threes equal zero.</li>
+                        </ul>
+                    </div>
+                </div>}
             <div className={styles.playerListCont}>
                 
                 
