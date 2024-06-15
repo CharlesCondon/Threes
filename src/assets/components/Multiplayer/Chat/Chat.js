@@ -35,13 +35,13 @@ const Chat = ({ gameCode, players, chat, open }) => {
         }
     };
 
-    function getPnum(id) {
-        console.log(players)
-        console.log(id)
-        const player = players.find((p) => p.id === id);
-        console.log(player)
-        //return player.pos+1;
-    }
+    // function getPnum(id) {
+    //     console.log(players)
+    //     console.log(id)
+    //     const player = players.find((p) => p.id === id);
+    //     console.log(player)
+    //     //return player.pos+1;
+    // }
 
     return (
         <div className={`${styles.chatContainer} ${!open ? styles.chatClosed : ''}`}>

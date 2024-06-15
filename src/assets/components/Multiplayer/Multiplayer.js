@@ -4,7 +4,7 @@ import SocketContext from '../../context/SocketContext';
 import styles from './Multiplayer.module.scss'
 import Dice from '../Game/Dice/Dice';
 import Chat from './Chat/Chat';
-import shareImg from '../../images/share.png';
+// import shareImg from '../../images/share.png';
 import chatImg from '../../images/comment.png';
 
 const initialDice = [
