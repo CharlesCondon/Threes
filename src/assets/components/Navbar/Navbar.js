@@ -50,7 +50,7 @@ function Navbar() {
                             {/* <button disabled={true} onClick={() => navigate('/')}>LOGIN / SIGNUP</button> */}
                             <div className={styles.navFooter}>
                                 {/* <button disabled={true} onClick={() => navigate('/')}>Settings</button> */}
-                                <p>v.1.0</p>
+                                <p>v.1.1</p>
                             </div>
                         </div>
                     </>
@@ -60,7 +60,7 @@ function Navbar() {
                         <button onClick={() => handleNav('/play')}>PLAY</button>
                         <button onClick={() => handleNav('/stats')}>STATS</button>
                         <div className={styles.navFooter}>
-                            <p>v.0.6</p>
+                            <p>v.1.1</p>
                         </div>
                     </div>
                 )}
